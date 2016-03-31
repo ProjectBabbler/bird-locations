@@ -16,14 +16,11 @@ locations.getByCode('US').then((data) => {
 
     /*
         {
-            category: 'species',
-            comName: 'Western Olive Sunbird',
-            comNameCodes: [ 'WOSU', 'OLSU' ],
-            sciName: 'Cyanomitra obscura',
-            sciNameCodes: [ 'CYOB' ],
-            speciesCode: 'weosun1',
-            taxonID: 'TC010237',
-            taxonOrder: 27067,
+            countryCode: 'US',
+            localAbbrev: 'US',
+            name: 'United States',
+            nameLong: 'United States of America',
+            nameShort: '',
         }
     */
 }).catch((error) => {
