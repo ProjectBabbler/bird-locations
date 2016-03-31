@@ -1,16 +1,16 @@
 # bird-list
-Api for database of birds
+Database of locations for ebird
 
 ## How to use
 
 ```
-npm install --save bird-list
+npm install --save bird-locations
 ```
 
 ```js
-var birdList = require('bird-list');
+var locations = require('bird-locations');
 
-birdList.getBySpeciesCode('weosun1').then((data) => {
+locations.getByCode('US').then((data) => {
     // Metadata for a bird
     console.log(data);
 
@@ -33,9 +33,9 @@ birdList.getBySpeciesCode('weosun1').then((data) => {
 
 ## API
 
-### getBySpeciesCode(code)
-Return meta data for a bird
+### getByCode(code)
+Return data for a location
 
 ```js
-    birdList.getBySpeciesCode(code)
+    locations.getByCode(code)
 ```

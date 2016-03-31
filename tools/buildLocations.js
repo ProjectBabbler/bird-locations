@@ -2,7 +2,7 @@ var Firebase = require('firebase');
 var firebaseRef = new Firebase('https://birding-locations.firebaseio.com/');
 var request = require('request-promise');
 
-var ref = firebaseRef.child('ebird/locations');
+var ref = firebaseRef.child('locations');
 
 var baseUrl = 'http://ebird.org/ws1.1/ref/location/list';
 

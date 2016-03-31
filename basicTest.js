@@ -1,16 +1,13 @@
-var birdList = require('./src/index.js');
+var locations = require('./src/index.js');
 var expect = require('chai').expect;
 
-birdList.getBySpeciesCode('weosun1').then(data => {
+locations.getByCode('US').then(data => {
     expect(data).to.deep.equal({
-        category: 'species',
-        comName: 'Western Olive Sunbird',
-        comNameCodes: [ 'WOSU', 'OLSU' ],
-        sciName: 'Cyanomitra obscura',
-        sciNameCodes: [ 'CYOB' ],
-        speciesCode: 'weosun1',
-        taxonID: 'TC010237',
-        taxonOrder: 27067,
+        countryCode: 'US',
+        localAbbrev: 'US',
+        name: 'United States',
+        nameLong: 'United States of America',
+        nameShort: '',
     });
 }).then(() => {
     console.log('success');
