@@ -22,6 +22,7 @@ var Search = React.createClass({
                 options.push({
                     value: code,
                     label: birdLocations.getNiceName(loc),
+                    location: loc,
                 });
             }
 
@@ -33,7 +34,7 @@ var Search = React.createClass({
 
     loadOptions(input, callback) {
         var filtered = this.state.options.filter(o => {
-            return o.label.toLowerCase().match(input);
+            return o.location.name.toLowerCase().match(input);
         });
         var limited = filtered.slice(0, 10);
 
