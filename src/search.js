@@ -1,7 +1,7 @@
 require('react-select/dist/react-select.min.css');
 var React = require('react');
 var Select = require('react-select');
-var birdLocations = require('../index.js');
+var birdLocations = require('./index.js');
 
 var Search = React.createClass({
     getInitialState() {
