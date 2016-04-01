@@ -1,6 +1,6 @@
 {
   "name": "bird-locations",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Database of locations for ebird reference",
   "main": "lib/index.js",
   "scripts": {
