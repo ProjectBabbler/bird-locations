@@ -2,7 +2,7 @@ var Firebase = require('firebase');
 var firebaseRef = new Firebase('https://birding-locations.firebaseio.com/');
 var ebird = require('ebird-js');
 var RateLimiter = require('limiter').RateLimiter;
-var limiter = new RateLimiter(10, 'minute');
+var limiter = new RateLimiter(60, 'minute');
 
 var ref = firebaseRef.child('locations');
 
