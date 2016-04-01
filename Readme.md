@@ -50,3 +50,20 @@ Take the result from `getByCode` and returns a string
 ```js
     locations.getNiceName(result)
 ```
+
+
+## React Modules
+
+### Location search
+A wrapper to `react-select` type-a-head for ebird locations.
+
+```js
+var LocationsSearch = require('bird-locations/lib/search');
+/**
+    Location {
+        code: ebird code for location
+        label: Nice name of location
+    }
+*/
+<LocationsSearch value={this.state.location} onChange={this.updateLocation} />
+```
