@@ -11,5 +11,20 @@ module.exports = {
                 return null;
             }
         });
+    },
+
+    getAll() {
+        return firebaseRef.child('locations').once('value').then(snap => {
+            var data = snap.val();
+            if (data) {
+                return data;
+            } else {
+                return null;
+            }
+        });
+    },
+
+    getNiceName(result) {
+        return result.niceName || result.name;
     }
 };

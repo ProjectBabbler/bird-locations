@@ -11,7 +11,11 @@ ref.authWithCustomToken(process.env.firebase).then(() => {
 }).then(snap => {
     var ps = [];
     snap.forEach(subSnap => {
-        var name = subSnap.val().name;
+        var location = subSnap.val();
+        if (location.niceName) {
+            return;
+        }
+        var name = location.name;
         console.log('Searching for ' + name);
         ps.push(new Promise((resolve, reject) => {
             limiter.removeTokens(1, () => {

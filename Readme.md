@@ -30,9 +30,23 @@ locations.getByCode('US').then((data) => {
 
 ## API
 
+### getAll()
+Return all locations
+
+```js
+    locations.getAll()
+```
+
 ### getByCode(code)
 Return data for a location
 
 ```js
     locations.getByCode(code)
+```
+
+### getNiceName(result)
+Take the result from `getByCode` and returns a string
+
+```js
+    locations.getNiceName(result)
 ```
