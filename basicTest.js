@@ -8,6 +8,7 @@ locations.getByCode('US').then(data => {
         name: 'United States',
         nameLong: 'United States of America',
         nameShort: '',
+        niceName: 'United States (US)',
     });
 }).then(() => {
     console.log('success');
