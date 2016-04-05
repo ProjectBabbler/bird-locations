@@ -19,11 +19,15 @@ var Search = React.createClass({
             var options = [];
             for (var code in locs) {
                 var loc = locs[code];
-                options.push({
-                    value: code,
-                    label: birdLocations.getNiceName(loc),
-                    location: loc,
-                });
+                if (loc.name) {
+                    options.push({
+                        value: code,
+                        label: birdLocations.getNiceName(loc),
+                        location: loc,
+                    });
+                } else {
+                    console.log(code + ' empty');
+                }
             }
 
             this.setState({
