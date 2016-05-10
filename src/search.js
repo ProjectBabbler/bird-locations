@@ -2,7 +2,6 @@ require('react-select/dist/react-select.min.css');
 var React = require('react');
 var Select = require('react-select');
 var birdLocations = require('./index.js');
-var split = require('split-string-words');
 
 var Search = React.createClass({
     getInitialState() {
@@ -16,21 +15,7 @@ var Search = React.createClass({
     },
 
     getOptions() {
-        birdLocations.getAll().then(locs => {
-            var options = [];
-            for (var code in locs) {
-                var loc = locs[code];
-                if (loc.name) {
-                    options.push({
-                        value: code,
-                        label: birdLocations.getNiceName(loc),
-                        location: loc,
-                    });
-                } else {
-                    console.log(code + ' empty');
-                }
-            }
-
+        birdLocations.getForAutoComplete().then(options => {
             this.setState({
                 options,
             });
@@ -38,12 +23,7 @@ var Search = React.createClass({
     },
 
     loadOptions(input, callback) {
-        var words = split(input);
-        var filtered = this.state.options.filter(o => {
-            return words.every(word => {
-                return o.label.toLowerCase().match(word.toLowerCase());
-            });
-        });
+        var filtered = birdLocations.filterAutoComplete(input, this.state.options);
         var limited = filtered.slice(0, 10);
 
         callback(null, {

@@ -11,6 +11,15 @@ locations.getByCode('US').then(data => {
         niceName: 'United States (US)',
     });
 }).then(() => {
+    return locations.getForAutoComplete().then(options => {
+        var results = locations.filterAutoComplete('Marin california', options);
+        expect(results[0].value).to.equal('US-CA-041');
+
+        var results2 = locations.filterAutoComplete('Marin CA US', options);
+        console.log(results2)
+        expect(results2[0].value).to.equal('US-CA-041');
+    });
+}).then(() => {
     console.log('success');
     process.exit(0);
 }).catch(e => {
