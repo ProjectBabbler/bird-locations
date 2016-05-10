@@ -36,6 +36,7 @@ var Search = React.createClass({
             <Select.Async
                 {...this.props}
                 loadOptions={this.loadOptions}
+                filterOptions={(r) => { return r; }}
             />
         );
     },
