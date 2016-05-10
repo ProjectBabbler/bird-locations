@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "firebase": "^2.4.1",
+    "react": "^15.0.2",
     "react-select": "^1.0.0-beta13",
     "split-string-words": "0.0.3"
   }

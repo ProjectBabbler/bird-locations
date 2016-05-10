@@ -41,7 +41,7 @@ var Search = React.createClass({
         var words = split(input);
         var filtered = this.state.options.filter(o => {
             return words.every(word => {
-                return o.location.label.toLowerCase().match(word.toLowerCase());
+                return o.label.toLowerCase().match(word.toLowerCase());
             });
         });
         var limited = filtered.slice(0, 10);
