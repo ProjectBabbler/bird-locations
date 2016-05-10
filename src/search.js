@@ -2,6 +2,7 @@ require('react-select/dist/react-select.min.css');
 var React = require('react');
 var Select = require('react-select');
 var birdLocations = require('./index.js');
+var split = require('split-string-words');
 
 var Search = React.createClass({
     getInitialState() {
@@ -37,8 +38,11 @@ var Search = React.createClass({
     },
 
     loadOptions(input, callback) {
+        var words = split(input);
         var filtered = this.state.options.filter(o => {
-            return o.location.name.toLowerCase().match(input);
+            return words.every(word => {
+                return o.location.label.toLowerCase().match(word.toLowerCase());
+            });
         });
         var limited = filtered.slice(0, 10);
 

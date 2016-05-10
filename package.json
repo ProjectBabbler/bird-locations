@@ -34,12 +34,16 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "limiter": "^1.1.0",
+    "react": ">=15.0.0",
     "request-promise": "^2.0.1",
     "rimraf": "^2.3.4"
   },
+  "peerDependencies": {
+    "react": ">=15.0.0"
+  },
   "dependencies": {
     "firebase": "^2.4.1",
-    "react": "^0.14.8",
-    "react-select": "^1.0.0-beta11"
+    "react-select": "^1.0.0-beta13",
+    "split-string-words": "0.0.3"
   }
 }
