@@ -1,8 +1,17 @@
-var Firebase = require('firebase');
-var firebaseRef = new Firebase('https://birding-locations.firebaseio.com/');
 var request = require('request-promise');
+var firebase = require('firebase');
+var config = {
+    apiKey: 'AIzaSyB7ugHIbhdF-F2LmZcISBb2HgmF1ppp9oY',
+    databaseURL: 'https://birding-locations.firebaseio.com',
+    serviceAccount: {
+        project_id: 'birding-locations',
+        private_key: process.env.FIREBASE_SERVICE_KEY.replace(/\\n/g, '\n'),
+        client_email: 'private-console-key@birding-locations.iam.gserviceaccount.com',
+    }
+};
+let firebaseApp = firebase.initializeApp(config);
 
-var ref = firebaseRef.child('locations');
+var ref = firebaseApp.database().ref('locations');
 
 var baseUrl = 'http://ebird.org/ws1.1/ref/location/list';
 
@@ -12,14 +21,12 @@ var extras = {
     },
 };
 
-ref.authWithCustomToken(process.env.firebase).then(() => {
-    return request.get(baseUrl, {
-        qs: {
-            fmt: 'json',
-            rtype: 'country',
-        },
-        json: true,
-    });
+request.get(baseUrl, {
+    qs: {
+        fmt: 'json',
+        rtype: 'country',
+    },
+    json: true,
 }).then(countries => {
     var ps = [];
     countries.forEach(country => {

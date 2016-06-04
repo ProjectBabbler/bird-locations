@@ -1,14 +1,20 @@
-var Firebase = require('firebase');
-var firebaseRef = new Firebase('https://birding-locations.firebaseio.com/');
 var ebird = require('ebird-js');
 var RateLimiter = require('limiter').RateLimiter;
 var limiter = new RateLimiter(60, 'minute');
+var firebase = require('firebase');
+var config = {
+    apiKey: 'AIzaSyB7ugHIbhdF-F2LmZcISBb2HgmF1ppp9oY',
+    databaseURL: 'https://birding-locations.firebaseio.com',
+    serviceAccount: {
+        project_id: 'birding-locations',
+        private_key: process.env.FIREBASE_SERVICE_KEY.replace(/\\n/g, '\n'),
+        client_email: 'private-console-key@birding-locations.iam.gserviceaccount.com',
+    }
+};
+let firebaseApp = firebase.initializeApp(config);
+var ref = firebaseApp.database().ref('locations');
 
-var ref = firebaseRef.child('locations');
-
-ref.authWithCustomToken(process.env.firebase).then(() => {
-    return ref.once('value');
-}).then(snap => {
+ref.once('value').then(snap => {
     var ps = [];
     snap.forEach(subSnap => {
         var location = subSnap.val();
