@@ -16,7 +16,7 @@ var ref = firebaseApp.database().ref('locations');
 var baseUrl = 'http://ebird.org/ws1.1/ref/location/list';
 
 var extras = {
-    ABA: {
+    aba: {
         name: 'ABA'
     },
 };
