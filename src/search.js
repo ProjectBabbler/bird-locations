@@ -23,7 +23,7 @@ var Search = React.createClass({
     },
 
     loadOptions(input, callback) {
-        var filtered = this.state.index.searchResults(input);
+        var filtered = this.state.index ? this.state.index.searchResults(input) : [];
         var limited = filtered.slice(0, 10);
 
         callback(null, {
