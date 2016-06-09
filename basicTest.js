@@ -10,14 +10,20 @@ locations.getByCode('US').then(data => {
         nameShort: '',
         niceName: 'United States (US)',
     });
+    console.log('success', 'getByCode US');
 }).then(() => {
-    return locations.getForAutoComplete().then(options => {
-        var results = locations.filterAutoComplete('Marin california', options);
+    return locations.getIndex().then(index => {
+        var results = index.searchResults('Marin california');
         expect(results[0].value).to.equal('US-CA-041');
+        console.log('success', 'index Marin california');
 
-        var results2 = locations.filterAutoComplete('Marin CA US', options);
-        console.log(results2)
+        var results2 = index.searchResults('Marin CA US');
         expect(results2[0].value).to.equal('US-CA-041');
+        console.log('success', 'index Marin CA US');
+
+        var results3 = index.searchResults('ABA');
+        expect(results3[0].value).to.equal('aba');
+        console.log('success', 'index ABA');
     });
 }).then(() => {
     console.log('success');

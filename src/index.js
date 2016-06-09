@@ -10,7 +10,7 @@ var config = {
     }
 };
 let firebaseApp = firebase.initializeApp(config);
-var split = require('split-string-words');
+var lunr = require('lunr');
 
 
 module.exports = {
@@ -40,37 +40,41 @@ module.exports = {
         return result.niceName || result.name;
     },
 
-    getForAutoComplete() {
+    getIndex() {
         return new Promise((resolve, reject) => {
             this.getAll().then(locs => {
-                var options = [];
+                var idx = lunr(function() {
+                    this.ref('code');
+                    this.field('name', { boost: 10 });
+                    this.field('niceName');
+                });
+
                 for (var code in locs) {
                     var loc = locs[code];
                     if (loc.name) {
-                        options.push({
-                            value: code,
-                            label: this.getNiceName(loc),
-                            location: loc,
+                        idx.add({
+                            code: code,
+                            name: loc.name,
+                            niceName: this.getNiceName(loc),
                         });
                     } else {
                         console.log(code + ' empty');
                     }
                 }
 
-                resolve(options);
+                idx.searchResults = (query) => {
+                    return idx.search(query).map(result => {
+                        var loc = locs[result.ref];
+                        return {
+                            value: result.ref,
+                            label: this.getNiceName(loc),
+                            location: loc,
+                        };
+                    });
+                };
+
+                resolve(idx);
             });
         });
-    },
-
-    filterAutoComplete(input, options) {
-        var words = split(input);
-        var filtered = options.filter(o => {
-            var searchText = split(o.label.toLowerCase()).join(' ');
-            return words.every(word => {
-                return searchText.match(word.toLowerCase());
-            });
-        });
-
-        return filtered;
     }
 };

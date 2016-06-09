@@ -6,7 +6,7 @@ var birdLocations = require('./index.js');
 var Search = React.createClass({
     getInitialState() {
         return {
-            options: [],
+            index: null,
         };
     },
 
@@ -15,15 +15,15 @@ var Search = React.createClass({
     },
 
     getOptions() {
-        birdLocations.getForAutoComplete().then(options => {
+        birdLocations.getIndex().then(index => {
             this.setState({
-                options,
+                index,
             });
         });
     },
 
     loadOptions(input, callback) {
-        var filtered = birdLocations.filterAutoComplete(input, this.state.options);
+        var filtered = this.state.index.searchResults(input);
         var limited = filtered.slice(0, 10);
 
         callback(null, {
