@@ -11,7 +11,7 @@ var config = {
         client_email: 'private-console-key@birding-locations.iam.gserviceaccount.com',
     }
 };
-let firebaseApp = firebase.initializeApp(config);
+let firebaseApp = firebase.initializeApp(config, 'bird-locations-server');
 var ref = firebaseApp.database().ref('locations');
 
 ref.once('value').then(snap => {

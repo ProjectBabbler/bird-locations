@@ -9,7 +9,7 @@ var config = {
         client_email: 'public-read-only@birding-locations.iam.gserviceaccount.com',
     }
 };
-let firebaseApp = firebase.initializeApp(config);
+let firebaseApp = firebase.initializeApp(config, 'bird-locations');
 var lunr = require('lunr');
 
 
